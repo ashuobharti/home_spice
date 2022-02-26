@@ -1,7 +1,12 @@
 // @dart=2.9
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
+import './widgets/foodCategorySelectWidget.dart';
+import './widgets/custHomeBottomNav.dart';
+import './widgets/custHomeAppBarWidget.dart';
+import './widgets/custSortFoodListWidget.dart';
+import './widgets/custHomeBookForWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,54 +36,17 @@ class CustomerHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Home Spice',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            )),
-        leading: Container(
-          width: 30,
-          height: 95,
-          padding: EdgeInsets.all(5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Icon(
-                Icons.location_on,
-                size: 20,
-              ),
-              Text(
-                'ONGC Goregaon',
-                style: TextStyle(
-                  fontSize: 10,
-                ),
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.account_box_rounded,
-              size: 35,
-            ),
-          )
+      appBar: CustHomeAppBar(),
+      bottomNavigationBar: CustHomeBottomNav(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          FoodCategorySelect(),
+          CustHomeBookFor(),
+          CustSortFoodList(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color.fromARGB(255, 159, 56, 177),
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Color.fromARGB(234, 0, 0, 0),
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.support_agent_rounded), label: 'Support'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          ]),
     );
   }
 }
